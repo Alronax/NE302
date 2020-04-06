@@ -312,7 +312,6 @@ int token(char* req,int pos,int taille,node* noeud){
   noeud->fils = create_new_node();
   fils = noeud->fils;
   flag = _alpha(req,pos,1,fils);
-  printf("fils->champ = %s",fils->champ);
   pos ++;
   i++;
 
@@ -333,7 +332,6 @@ int token(char* req,int pos,int taille,node* noeud){
 int _alpha(char* req,int pos,int taille,node* noeud){
   int flag = 1;
 
-  printf("in _alpha\n");
   noeud->champ = "_alpha";
   noeud->character = req + pos;
   noeud->taille = taille;
@@ -621,24 +619,18 @@ char *getElementValue(node* noeud,int *len){
 }
 
 node *searchTree(node* branche,char *name,int* flag,int taille){
-  int j = 0;
   node* tmp;
 
-  printf("in search tree\n");
     if (strcmp(branche->champ,name) == 0){
       *flag = 1;
       tmp = branche;
     }
-  while(*flag == 0 && branche->fils != NULL){
+  if(*flag == 0 && branche->fils != NULL){
     tmp = searchTree(branche->fils,name,flag,branche->fils->taille);
   }
 
-  while(*flag == 0 && branche->frere != NULL){
+  if(*flag == 0 && branche->frere != NULL){
     tmp = searchTree(branche->frere,name,flag,branche->frere->taille);
-    j++;
-    if (j == 10){
-      *flag = 1;
-    }
   }
 
   if (*flag == 1){

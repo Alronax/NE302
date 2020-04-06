@@ -13,8 +13,8 @@ int main(int argc,char *argv[]){
   parseur (requete,strlen(requete));
 
   racine = getRootTree();
-  branche = searchTree(racine,"_alpha",drapeau,strlen(requete));
-  
+  branche = searchTree(racine,"host-header",drapeau,strlen(requete));
+
   print_node(branche);
   return 0;
 }
